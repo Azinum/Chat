@@ -5,8 +5,12 @@ var io = require("socket.io")(server);
 
 app.use(express.static(__dirname + "/static"));
 
+app.set("port", (process.env.PORT || 5000));
+
 app.get("/", function(req, res, next) {
     res.sendFile(__dirname + req);
 });
 
-server.listen(8080);
+app.listen(app.get("port"), function() {
+	console.log('Node app is up and running on port', app.get('port'));
+});
