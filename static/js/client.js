@@ -2,10 +2,18 @@ var app = angular.module("App", [])
 .controller("main", function($scope) {
 
 	$scope.userInput = "";
-	$scope.messages = [];
+	$scope.messages = [
+		{name: "", text: "", style: "text-basic"}
+	];
 	$scope.socket = io();
 
 	$scope.socket.on("message", (data) => {
+		data.style = "text-basic";
+		$scope.messages.push(data);
+	});
+	
+	$scope.socket.on("alert", (data) => {
+		data.style = "text-alert";
 		$scope.messages.push(data);
 	});
 
@@ -22,7 +30,7 @@ var app = angular.module("App", [])
 		$scope.userInput = "";
 	}
 })
-.filter("reverse", function() {
+.filter("reverse", () => {
 	return function(messages) {
 		return messages.slice().reverse();
 	}

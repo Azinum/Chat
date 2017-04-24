@@ -15,7 +15,8 @@
 	<input type="button" ng-click="sendMessage()" value="Send"></input>
 	<div class="messagebox">
 		<div ng-repeat="message in messages | reverse track by $index">
-			<p>{{message}}</p>
+			<i class="name">{{message.name}}</i>
+			<p class="{{message.style}}">{{message.text}}</p>
 		</div>
 	</div>
 </body>
