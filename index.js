@@ -13,19 +13,25 @@ app.get("/", (req, res, next) => {
 
 server.listen(app.get("port"), () => {
 	console.log('Node app is up and running on port', app.get('port'));
+	globalSession = {
+		userCount: 0
+	}
 
 	io.on("connect", (socket) => {
 		var session = {
-			name: "Unknown"
+			name: "Guest (" + globalSession.userCount + ")"
 		}
+		globalSession.userCount++;
+
 		socket.on("message", (data) => {
 			if (data[0] == "/") {	/* Okay, message is a command */
-				data = data.split(" ");
-				switch (data[0]) {
+				newData = data.split(" ");
+				switch (newData[0]) {
 					case "/name": {
 						if (data.length < 30) {
-							io.sockets.emit("alert", {text: session.name + " changed name to " + data[1]})
-							session.name = data[1];
+							data = data.substring(5);
+							io.sockets.emit("alert", {text: session.name + " changed name to " + data})
+							session.name = data;
 						}
 						return;
 					}
