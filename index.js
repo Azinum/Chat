@@ -9,4 +9,4 @@ app.get("/", function(req, res, next) {
     res.sendFile(__dirname + req);
 });
 
-server.listen(3000);
+server.listen();
