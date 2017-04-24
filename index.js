@@ -23,6 +23,8 @@ server.listen(app.get("port"), () => {
 		}
 		globalSession.userCount++;
 
+		io.sockets.emit("alert", {text: "A new user has connected to the channel"});
+
 		socket.on("message", (data) => {
 			if (data[0] == "/") {	/* Okay, message is a command */
 				newData = data.split(" ");
