@@ -13,8 +13,10 @@
 <body ng-controller="main">
 	<input type="text" ng-model="userInput"></input>
 	<input type="button" ng-click="sendMessage()" value="Send"></input>
-	<div ng-repeat="message in messages track by $index">
-		<p>{{message}}</p>
+	<div class="messagebox">
+		<div ng-repeat="message in messages | reverse track by $index">
+			<p>{{message}}</p>
+		</div>
 	</div>
 </body>
 </html>

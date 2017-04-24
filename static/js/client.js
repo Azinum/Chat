@@ -9,7 +9,7 @@ var app = angular.module("App", [])
 		$scope.messages.push(data);
 	});
 
-	$scope.$watch("messages", function() {
+	$scope.$watch("messages", () => {
 		setInterval(() => {
 			$scope.$apply();
 			return;
@@ -21,4 +21,9 @@ var app = angular.module("App", [])
 		$scope.socket.emit("message", $scope.userInput);
 		$scope.userInput = "";
 	}
-});
+})
+.filter("reverse", function() {
+	return function(messages) {
+		return messages.slice().reverse();
+	}
+})
