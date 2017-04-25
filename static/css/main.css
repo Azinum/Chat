@@ -16,11 +16,27 @@ body {
   box-sizing: inherit;
 }
 
+a {
+	text-decoration: none;
+}
+
 input:focus,
 select:focus,
 textarea:focus,
 button:focus {
 	outline: none;
+}
+
+.index-head {
+		width: 100%;
+		top: 0;
+		background-color: rgb(230, 230, 230);
+	}
+	.index-head-title {
+		color: rgb(255, 180, 50);
+		text-align: left;
+		font-size: 32px;
+		border-bottom: 2px solid rgb(210, 210, 210);
 }
 
 .main-start-box {
@@ -33,13 +49,6 @@ button:focus {
 		text-align: left;
 		background-color: rgb(240, 240, 240);
 		border: 2px solid rgb(230, 230, 230);
-	}
-	.main-start-box-title {
-		color: rgb(255, 180, 50);
-		text-align: center;
-		font-size: 32px;
-		margin: 12px;
-		margin-bottom: 15px;
 	}
 	.main-start-box-text {
 		font-size: 17px;

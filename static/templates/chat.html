@@ -3,7 +3,7 @@
 		<div ng-repeat="message in messages track by $index">
 			<div class="chat-view-bubble">
 				<p class="chat-view-bubble-name" ng-class="{'hide': message.data.style != 'normal', 'chat-view-bubble-name': message.data.style == 'normal'}">{{message.name}}<span class="chat-view-bubble-time">{{message.time}}</span></p>
-				<span class="color-{{message.data.style}}">{{message.data.text}}</span>
+				<code class="color-{{message.data.style}}">{{message.data.text}}</code>
 			</div>
 		</div>
 	</div>
