@@ -106,7 +106,7 @@ button:focus {
 		font-size: 18px;
 	}
 	.chat-view-bubble {
-		width: 200px;
+		width: auto;
 		height: auto;
 		border: 2px solid rgb(230, 230, 230);
 		border-radius: 5px;
@@ -115,8 +115,31 @@ button:focus {
 
 	}
 	.chat-view-bubble-name {
-		color: rgb(255, 150, 100);	
+		color: black;
+		font-style: italic;
+		font-size: 15px;
 	}
 	.chat-view-bubble-own-name	{
 		color: red;
-	}
+}
+
+.color-normal {
+	color: rgb(160, 160, 160);
+}
+.color-alert {
+	color: rgb(240, 50, 30);
+}
+.hide {
+	display: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+

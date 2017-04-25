@@ -2,7 +2,7 @@
 ** index.js
 */
 
-const uchat = require("./resources/uchat");
+const chat = require("./resources/chat");
 
-uchat.init();
-uchat.run();
+chat.init();
+chat.run();

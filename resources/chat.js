@@ -1,5 +1,5 @@
 /*
-** uchat.js
+** chat.js
 */
 
 const express = require("express");

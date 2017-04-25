@@ -5,9 +5,9 @@
 
 	<input placeholder="Enter a username" type="text" ng-model="userName"></input>
 
-	<input placeholder="Enter a chat session" type="text" ng-model="joinSession"></input>
+	<input placeholder="Join a chat session" type="text" ng-model="joinSession"></input>
 	<a href="#/chat">
-		<button ng-click="send('join', joinSession); send('name', userName)">Enter</button>
+		<button ng-click="send('join', joinSession); send('name', userName)">Join</button>
 	</a>
 
 	<input placeholder="Create a new chat session" type="text" ng-model="newSession"></input>

@@ -18,6 +18,21 @@ module.exports = {
 		this.users = {}
 		this.name = "";
 
+		this.sendAllGroup = function(socket, command, data) {
+			var currentUser = session.users[socket.id];
+			var currentSession = currentUser.session;
+
+			if (session.sessions[currentSession]) {
+				for (var i in session.sessions[currentSession].users) {
+					if (session.sessions[currentSession].users[i]) {
+						session.sessions[currentSession].users[i].emit(command, 
+							{name: currentUser.name, text: data}
+						);
+					}
+				}
+			}
+		}
+
 		this.instance.io.on("connect", function(socket) {
 			console.log("User connected");
 
@@ -45,6 +60,7 @@ module.exports = {
 				if (session.sessions[data] != null) {
 					session.sessions[data].users[socket.id] = socket;
 					session.users[socket.id].session = data;
+					session.sendAllGroup(socket, "alert", "Has connected to the chat");
 				} else {
 					socket.emit("changeView", "");	/* Maybe create a notice popup */
 				}
@@ -55,26 +71,16 @@ module.exports = {
 			});
 
 			socket.on("message", function(data) {
-				var currentUser = session.users[socket.id];
-				var currentSession = currentUser.session;
-
-				if (session.sessions[currentSession]) {
-					for (var i in session.sessions[currentSession].users) {
-						if (session.sessions[currentSession].users[i]) {
-							session.sessions[currentSession].users[i].emit("message", 
-								{name: currentUser.name, text: data}
-							);
-						}
-					}
-				}
+				session.sendAllGroup(socket, "message", data);
 			});
 
 			socket.on("name", function(data) {
-				console.log(session.users[socket.id].name, "changed name to", data);
+				session.sendAllGroup(socket, "alert", "Changed name to " + data);
 				session.users[socket.id].name = data;
 			});
 
 			socket.on("disconnect", function() {
+				session.sendAllGroup(socket, "alert", "Has disconnected");
 				console.log("User has disconnected");
 				if (session.users[socket.id] != null) {
 					delete session.users[socket.id];

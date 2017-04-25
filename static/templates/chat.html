@@ -3,7 +3,8 @@
 	<div class="chat-view-content" scroll-bottom="messages">
 		<div ng-repeat="message in messages track by $index">
 			<div class="chat-view-bubble">
-				<p class="chat-view-bubble-name" ng-class="{'chat-view-bubble-own-name': message.name == $parent.name, 'chat-view-bubble-name': message.name != $parent.name}">{{message.name}}</p>{{message.text}}
+				<p class="chat-view-bubble-name" ng-class="{'hide': message.style != 'normal', 'chat-view-bubble-name': message.style == 'normal'">{{message.name}}</p>
+				<span class="color-{{message.style}}">{{message.text}}</span>
 			</div>
 		</div>
 	</div>

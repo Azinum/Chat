@@ -32,6 +32,12 @@ app.controller("Chat", function($scope) {
 	$scope.messages = []
 
 	$scope.socket.on("message", function(data) {
+		data.style = "normal";
+		$scope.messages.push(data);
+	});
+
+	$scope.socket.on("alert", function(data) {
+		data.style = "alert";
 		$scope.messages.push(data);
 	});
 
