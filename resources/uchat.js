@@ -19,6 +19,8 @@ module.exports = {
 		app.use(helmet());
 
 		app.set("port", (process.env.PORT || config.port));
+		
+		app.use(express.static("../" + __dirname + "/static"));
 
 		app.get("/", function(req, res, next) {
 		    res.sendFile(__dirname + req);
