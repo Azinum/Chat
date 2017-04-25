@@ -31,14 +31,16 @@ app.controller("Chat", function($scope) {
 	$scope.userInput = "";
 	$scope.messages = []
 
-	$scope.socket.on("message", function(data) {
-		data.style = "normal";
-		$scope.messages.push(data);
-	});
+	$scope.playAudio = function(path, volume) {
+		var audio = new Audio(path);
+		audio.autoplay = true;
+		audio.volume = volume;
+		audio.play();
+	}
 
-	$scope.socket.on("alert", function(data) {
-		data.style = "alert";
+	$scope.socket.on("message", function(data) {
 		$scope.messages.push(data);
+		$scope.$digest();
 	});
 
 	$scope.send = function(command, data) {
@@ -49,13 +51,6 @@ app.controller("Chat", function($scope) {
 		$scope.socket.emit("message", $scope.userInput);
 		$scope.userInput = "";
 	}
-
-	$scope.$watch("messages", function() {
-		setInterval(() => {
-			$scope.$apply();
-			return;
-		}, 0);
-	});
 });
 
 app.config(function($routeProvider) {

@@ -24,7 +24,7 @@ module.exports = {
 		this.users = {}
 		this.name = "";
 
-		this.sendAllGroup = function(socket, command, data) {
+		this.sendAllGroup = function(socket, command, value) {
 			var currentUser = session.users[socket.id];
 			var currentSession = currentUser.session;
 
@@ -32,7 +32,7 @@ module.exports = {
 				for (var i in session.sessions[currentSession].users) {
 					if (session.sessions[currentSession].users[i]) {
 						session.sessions[currentSession].users[i].emit(command, 
-							{name: currentUser.name, text: data, time: getTime()}
+							{name: currentUser.name, data: value, time: getTime()}
 						);
 					}
 				}
@@ -77,11 +77,17 @@ module.exports = {
 			});
 
 			socket.on("message", function(data) {
-				session.sendAllGroup(socket, "message", data);
+				session.sendAllGroup(socket, "message", {
+					text: data,
+					style: "normal"
+				});
 			});
 
 			socket.on("name", function(data) {
-				session.sendAllGroup(socket, "alert", "Changed name to " + data);
+				session.sendAllGroup(socket, "message", {
+					text: "Changed name to " + data,
+					style: "alert"
+				});
 				session.users[socket.id].name = data;
 			});
 
