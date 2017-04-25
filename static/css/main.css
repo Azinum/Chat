@@ -29,14 +29,19 @@ button:focus {
 
 .index-head {
 		width: 100%;
-		top: 0;
+		height: 40px;
 		background-color: rgb(230, 230, 230);
+		border-bottom: 2px solid rgb(210, 210, 210);
+	}
+	.index-head-wrapper {
+		width: 100%;
+		position: fixed;
+		top: 0px;
 	}
 	.index-head-title {
 		color: rgb(255, 180, 50);
 		text-align: left;
 		font-size: 32px;
-		border-bottom: 2px solid rgb(210, 210, 210);
 }
 
 .main-start-box {
@@ -44,7 +49,7 @@ button:focus {
 		max-width: 400px;
 		height: 350px;
 		margin: 0px auto;
-		margin-top: 50px;
+		margin-top: 80px;
 		border-radius: 3px;
 		text-align: left;
 		background-color: rgb(240, 240, 240);
