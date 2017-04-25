@@ -5,18 +5,18 @@
 
 	<input placeholder="Enter a username" type="text" ng-model="userName"></input>
 
-	<input placeholder="Join a chat session" type="text" ng-model="joinSession"></input>
+	<input placeholder="Join a chat room" type="text" ng-model="joinSession"></input>
 	<a href="#/chat">
 		<button ng-click="send('join', joinSession); send('name', userName)">Join</button>
 	</a>
 
-	<input placeholder="Create a new chat session" type="text" ng-model="newSession"></input>
+	<input placeholder="Create a new chat room" type="text" ng-model="newSession"></input>
 	<a href="#/chat">
 		<button ng-click="send('newSession', newSession); send('name', userName)">New</button>
 	</a>
 
 	<p class="main-start-box-text">
-		Or join a random session
+		Or join a random chat room
 	</p>
 	
 	<div class="main-start-box-random">
