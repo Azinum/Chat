@@ -48,3 +48,6 @@ h1 {
 		height: 140px;
 		font-size: 50px;
 	}
+	.chat-view-bubble {
+		width: 100%;
+}

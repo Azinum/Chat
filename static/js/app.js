@@ -16,7 +16,7 @@ app.controller("Main", function($scope) {
 	$scope.joinSession = "";
 	$scope.newSession = "";
 	$scope.socket = $scope.$parent.socket;
-	
+
 	$scope.send = function(command, data) {
 		$scope.socket.emit(command, data);
 	}

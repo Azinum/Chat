@@ -61,7 +61,9 @@ module.exports = {
 				if (session.sessions[currentSession]) {
 					for (var i in session.sessions[currentSession].users) {
 						if (session.sessions[currentSession].users[i]) {
-							session.sessions[currentSession].users[i].emit("message", data);
+							session.sessions[currentSession].users[i].emit("message", 
+								{name: currentUser.name, text: data}
+							);
 						}
 					}
 				}

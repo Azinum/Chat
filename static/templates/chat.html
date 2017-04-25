@@ -1,8 +1,11 @@
 <div class="chat-view">
 	<a href="/#/">Home</a>
+	Here: {{$parent.userName}}
 	<div class="chat-view-content" scroll-bottom="messages">
 		<div ng-repeat="message in messages track by $index">
-			{{message}}
+			<div class="chat-view-bubble">
+				<p class="chat-view-bubble-name" ng-class="{'chat-view-bubble-own-name': message.name == $parent.name, 'chat-view-bubble-name': message.name != $parent.name}">{{message.name}}</p>{{message.text}}
+			</div>
 		</div>
 	</div>
 
