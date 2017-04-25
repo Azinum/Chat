@@ -2,7 +2,7 @@
 @font-face {
 	font-family: "CustomFont";
 	/* src: url("../fonts/DejaVuSans.ttf"); */
-	src: url("../fonts/Verase.ttf");
+	src: url("/fonts/Verase.ttf");
 }
 
 *, html {
