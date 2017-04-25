@@ -1,12 +1,5 @@
-
-@font-face {
-	font-family: "CustomFont";
-	/* src: url("../fonts/DejaVuSans.ttf"); */
-	src: url("/fonts/Verase.ttf");
-}
-
 *, html {
-	font-family: "CustomFont" !important;
+	font-family: Georgia, serif, auto;
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
