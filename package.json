@@ -1,6 +1,6 @@
 {
-	"name": "Chat",
-	"version": "0.0.0",
+	"name": "SmallChat",
+	"version": "0.0.1",
 	"main": "index.js",
 	"scripts": {
 		"start": "node index.js"

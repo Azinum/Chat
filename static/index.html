@@ -1,23 +1,23 @@
-<html ng-app="App">
-<head>
-	<title>Chat</title>
-	
-	<link rel="stylesheet" type="text/css" href="css/main.css"/>
-	
-	<script src="js/socket-io.js"></script>
-	<script src="js/jquery.js"></script>
-	<script src="js/angular.js"></script>
+<!DOCTYPE html>
+<html>
 
-	<script src="js/client.js"></script>
-</head>
-<body ng-controller="main">
-	<input type="text" ng-model="userInput"></input>
-	<input type="button" ng-click="sendMessage()" value="Send"></input>
-	<div class="messagebox">
-		<div ng-repeat="message in messages | reverse track by $index">
-			<i class="name">{{message.name}}</i>
-			<p class="{{message.style}}">{{message.text}}</p>
-		</div>
-	</div>
-</body>
+	<head>
+		<title>SmallChat</title>
+		
+		<link href="css/main.css" rel="stylesheet">
+		<link href="css/mobile.css" media="(max-device-width: 700px)" rel="stylesheet">
+
+		<script src="lib/angular.js"></script>
+		<script src="lib/angular-route.js"></script>
+		<script src="lib/jquery.js"></script>
+		<script src="lib/socket-io.js"></script>
+
+		<script src="js/app.js"></script>
+
+	</head>
+
+	<body ng-app="App" ng-controller="Init">
+		<div ng-view></div>
+	</body>
+
 </html>

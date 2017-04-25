@@ -1,0 +1,25 @@
+<div class="main-start-box">
+	<h1 class="main-start-box-title">Welcome to <i>SmallChat</i></h1>
+	
+	<input placeholder="Enter a username" type="text" ng-model="userName"></input>
+
+	<input placeholder="Enter a chat session" type="text" ng-model="joinSession"></input>
+	<a href="#/chat">
+		<button ng-click="send('join', joinSession); send('name', userName)">Enter</button>
+	</a>
+
+	<input placeholder="Create a new chat session" type="text" ng-model="newSession"></input>
+	<a href="#/chat">
+		<button ng-click="send('newSession', newSession); send('name', userName)">New</button>
+	</a>
+
+	<p class="main-start-box-text">
+		Or join a random session
+	</p>
+	
+	<div class="main-start-box-random">
+		<a href="#/chat">
+			<button ng-click="basicSend('joinRandom'); send('name', userName)">Random</button>
+		</a>
+	</div>
+<div>

@@ -1,0 +1,12 @@
+<div class="chat-view">
+	<a href="/#/">Home</a>
+	<div class="chat-view-content" scroll-bottom="messages">
+		<div ng-repeat="message in messages track by $index">
+			{{message}}
+		</div>
+	</div>
+
+	<div class="chat-view-input-wrapper">
+		<input placeholder="Type message here" type="text" value="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-model="userInput" ng-keydown="($event.keyCode == 13) ? sendMessage() : 0"></input>
+	</div>
+</div>
