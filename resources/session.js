@@ -66,7 +66,11 @@ module.exports = {
 				if (session.sessions[data] != null) {
 					session.sessions[data].users[socket.id] = socket;
 					session.users[socket.id].session = data;
-					session.sendAllGroup(socket, "alert", "Has connected to the chat");
+					
+					session.sendAllGroup(socket, "message", {
+						text: "Has connected to the chat",
+						style: "alert"
+					});
 				} else {
 					socket.emit("changeView", "");	/* Maybe create a notice popup */
 				}
@@ -92,7 +96,10 @@ module.exports = {
 			});
 
 			socket.on("disconnect", function() {
-				session.sendAllGroup(socket, "alert", "Has disconnected");
+				session.sendAllGroup(socket, "message", {
+					text: "Has disconnected",
+					style: "alert"
+				});
 				console.log("User has disconnected");
 				if (session.users[socket.id] != null) {
 					delete session.users[socket.id];
