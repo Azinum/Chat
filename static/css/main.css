@@ -114,6 +114,11 @@ button:focus {
 		word-wrap: break-word;
 
 	}
+	.chat-view-bubble-time {
+		float: right;
+		margin-right: 5px;
+		color: rgb(190, 190, 190);
+	}
 	.chat-view-bubble-name {
 		color: black;
 		font-style: italic;

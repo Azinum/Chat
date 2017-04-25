@@ -4,6 +4,12 @@
 
 const user = require("./user");
 
+
+function getTime() {
+	date = new Date();
+	return date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+}
+
 module.exports = {
 	init: function(instance) {
 		this.sessions = {
@@ -26,7 +32,7 @@ module.exports = {
 				for (var i in session.sessions[currentSession].users) {
 					if (session.sessions[currentSession].users[i]) {
 						session.sessions[currentSession].users[i].emit(command, 
-							{name: currentUser.name, text: data}
+							{name: currentUser.name, text: data, time: getTime()}
 						);
 					}
 				}
