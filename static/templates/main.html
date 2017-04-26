@@ -1,15 +1,15 @@
 <div class="main-start-box">
 
-	<input placeholder="Enter a username" type="text" ng-model="userName"></input>
+	<input placeholder="Enter a username" type="text" ng-model="userName" ng-change="send('name', userName)" ng-model-options="{updateOn: 'blur'}"></input>
 
 	<input placeholder="Join a chat room" type="text" ng-model="joinSession"></input>
 	<a href="#/chat">
-		<button ng-click="send('name', userName); send('join', joinSession)">Join</button>
+		<button ng-click="send('join', joinSession)">Join</button>
 	</a>
 
 	<input placeholder="Create a new chat room" type="text" ng-model="newSession"></input>
 	<a href="#/chat">
-		<button ng-click="send('name', userName); send('newSession', newSession)">New</button>
+		<button ng-click="send('newSession', newSession)">New</button>
 	</a>
 
 	<p class="main-start-box-text">
@@ -18,7 +18,7 @@
 	
 	<div class="main-start-box-random">
 		<a href="#/chat">
-			<button ng-click="send('name', userName); basicSend('joinRandom');">Random</button>
+			<button ng-click="basicSend('joinRandom');">Random</button>
 		</a>
 	</div>
 <div>
