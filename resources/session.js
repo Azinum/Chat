@@ -24,6 +24,14 @@ module.exports = {
 		this.users = {}
 		this.name = "";
 
+		this.getCurrentUser = function(socket) {
+			if (session.users[socket.id]) {
+				return session.users[socket.id];
+			}
+			console.log("This user does not exist... Socket:", socket.id);
+			return null;
+		}
+
 		this.sendAllGroup = function(socket, command, value) {
 			var currentUser = session.users[socket.id];
 			var currentSession = currentUser.session;
@@ -31,18 +39,15 @@ module.exports = {
 			if (session.sessions[currentSession]) {
 				for (var i in session.sessions[currentSession].users) {
 					if (session.sessions[currentSession].users[i]) {
-						session.sessions[currentSession].users[i].emit(command, 
-							{name: currentUser.name, data: value, time: getTime()}
-						);
+						session.sessions[currentSession].users[i].emit(command, value);
 					}
 				}
 			}
 		}
 
 		this.instance.io.on("connect", function(socket) {
-			console.log("User connected");
-
 			session.users[socket.id] = new user.init(instance, session, socket);
+			var currentUser = session.getCurrentUser(socket);
 
 			socket.on("newSession", function(data) {
 				var currentSession = session.users[socket.id].session;
@@ -55,7 +60,7 @@ module.exports = {
 						users: {	/* socket.id => socket */}
 					}
 					session.sessions[data].users[socket.id] = socket;
-					session.users[socket.id].session = data;
+					session.getCurrentUser(socket).session = data;
 				} else {
 					socket.emit("changeView", "");
 				}
@@ -65,11 +70,14 @@ module.exports = {
 			socket.on("join", function(data) {
 				if (session.sessions[data] != null) {
 					session.sessions[data].users[socket.id] = socket;
-					session.users[socket.id].session = data;
+					session.getCurrentUser(socket).session = data;
 					
 					session.sendAllGroup(socket, "message", {
-						text: "Has connected to the chat",
-						style: "alert"
+						name: session.users[socket.id].name,
+						data: {
+							text: "Has connected to the chat",
+							style: "alert"
+						}
 					});
 				} else {
 					socket.emit("changeView", "");	/* Maybe create a notice popup */
@@ -80,25 +88,38 @@ module.exports = {
 				socket.emit("changeView", "");
 			});
 
-			socket.on("message", function(data) {
+			socket.on("message", function(message) {
+				var currentUser = session.getCurrentUser(socket);
+				
 				session.sendAllGroup(socket, "message", {
-					text: data,
-					style: "normal"
+					name: currentUser.name,
+					data: {
+						text: message,
+						style: "normal"
+					},
+					time: getTime()
 				});
 			});
 
-			socket.on("name", function(data) {
+			socket.on("name", function(message) {
 				session.sendAllGroup(socket, "message", {
-					text: "Changed name to " + data,
-					style: "alert"
+					name: session.getCurrentUser(socket).name,
+					data: {
+						text: message,
+						style: "alert"
+					},
+					time: getTime()
 				});
-				session.users[socket.id].name = data;
+				session.users[socket.id].name = message;
 			});
 
 			socket.on("disconnect", function() {
 				session.sendAllGroup(socket, "message", {
-					text: "Has disconnected",
-					style: "alert"
+					name: session.getCurrentUser(socket).name,
+					data: {
+						text: "Has disconnected",
+						style: "alert"
+					}
 				});
 				console.log("User has disconnected");
 				if (session.users[socket.id] != null) {
