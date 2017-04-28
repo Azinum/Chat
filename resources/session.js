@@ -64,7 +64,7 @@ module.exports = {
 				var id = socket.id;
 				if (!session.sessions[data]) {
 					session.sessions[data] = {
-						users: {	/* socket.id => socket */}
+						users: {	/* socket.id: socket */}
 					}
 					session.sessions[data].users[socket.id] = socket;
 					session.getCurrentUser(socket).session = data;
@@ -92,7 +92,25 @@ module.exports = {
 			});
 
 			socket.on("joinRandom", function() {
-				socket.emit("changeView", "");
+				var chatRoomCount = Object.keys(session.sessions).length;
+				var randomRoom = Math.floor(Math.random() * chatRoomCount);
+				var roomName = Object.keys(session.sessions)[randomRoom];
+				var room = session.sessions[roomName];
+				
+				if (room != null) {
+					room.users[socket.id] = socket;
+					session.getCurrentUser(socket).session = roomName;
+					
+					session.sendAllGroup(socket, "message", {
+						name: session.users[socket.id].name,
+						data: {
+							text: "Has connected to the chat",
+							style: "alert"
+						}
+					});
+				} else {
+					socket.emit("changeView", "");
+				}
 			});
 
 			socket.on("message", function(message) {
@@ -128,7 +146,6 @@ module.exports = {
 						style: "alert"
 					}
 				});
-				console.log("User has disconnected");
 				if (session.users[socket.id] != null) {
 					delete session.users[socket.id];
 				}
