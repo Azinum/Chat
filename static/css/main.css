@@ -44,7 +44,17 @@ button:focus {
 		color: rgb(255, 180, 50);
 		text-align: left;
 		font-size: 32px;
-}
+		margin: 0px;
+		width: 0;
+		height: 0;
+	}
+	.index-head-usercount {
+		font-size: 14px;
+		float: right;
+		top: 0;
+		text-align: right;
+		margin-right: 5px;
+	}
 
 .main-start-box {
 		width: 100%;
@@ -148,11 +158,12 @@ button:focus {
 }
 
 .color-normal {
-	color: rgb(160, 160, 160);
-}
-.color-alert {
-	color: rgb(240, 50, 30);
-}
+		color: rgb(160, 160, 160);
+	}
+	.color-alert {
+		color: rgb(240, 50, 30);
+	}
+
 .hide {
 	display: hidden;
 }

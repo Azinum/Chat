@@ -8,6 +8,15 @@ app.controller("Init", function($scope, $location) {
 	$scope.socket.on("changeView", function(data) {
 		$location.path(data);
 	});
+
+	$scope.socket.on("setValue", function(data) {
+		if (data["key"] && data["value"]) {
+			$scope[data["key"]] = data["value"];
+			$scope.$apply();
+		}
+	});
+
+	$scope.userCount = 0;
 });
 
 /* $scope.$parent. */

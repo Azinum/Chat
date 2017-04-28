@@ -45,6 +45,13 @@ module.exports = {
 			}
 		}
 
+		setInterval(function() {
+			session.instance.io.sockets.emit("setValue", {
+				key: "userCount",
+				value: Object.keys(session.users).length
+			});
+		}, 1000 * 4);
+
 		this.instance.io.on("connect", function(socket) {
 			session.users[socket.id] = new user.init(instance, session, socket);
 			var currentUser = session.getCurrentUser(socket);
