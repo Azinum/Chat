@@ -84,7 +84,8 @@ module.exports = {
 						data: {
 							text: "Has connected to the chat",
 							style: "alert"
-						}
+						},
+						time: getTime()
 					});
 				} else {
 					socket.emit("changeView", "");	/* Maybe create a notice popup */
@@ -106,7 +107,8 @@ module.exports = {
 						data: {
 							text: "Has connected to the chat",
 							style: "alert"
-						}
+						},
+						time: getTime()
 					});
 				} else {
 					socket.emit("changeView", "");
@@ -144,7 +146,8 @@ module.exports = {
 					data: {
 						text: "Has disconnected",
 						style: "alert"
-					}
+					},
+					time: getTime()
 				});
 				if (session.users[socket.id] != null) {
 					delete session.users[socket.id];

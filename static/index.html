@@ -4,12 +4,13 @@
 	<head>
 		<title>UQUIBBLE</title>
 		
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
 		<meta name="description" content="A chat app where you can chat with anyone!">
 		<meta name="keywords" content="Chat, Random, App, Quibble, UQuibble">
 
 		<link href="css/main.css" rel="stylesheet">
-		<link href="css/mobile.css" media="(max-device-width: 700px)" rel="stylesheet">
+		<!-- <link href="css/mobile.css" media="(max-device-width: 700px)" rel="stylesheet"> -->
+		<link href="css/mobile.css" media="(max-width: 500px)" rel="stylesheet">
 
 		<script src="lib/angular.js"></script>
 		<script src="lib/angular-route.js"></script>
@@ -25,7 +26,7 @@
 				<a href="/#/">
 					<h1 class="index-head-title">UQuibble</h1>
 				</a>
-				<span class="index-head-usercount">There are currently <i>{{userCount}}</i> users online</span>
+				<span class="index-head-usercount">There are currently <i>{{userCount}}</i> user(s) online</span>
 			</div>
 		<div ng-view class="content"></div>
 	</body>

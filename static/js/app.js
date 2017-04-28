@@ -74,7 +74,7 @@ app.config(function($routeProvider) {
 	});
 });
 
-app.filter("reverse", () => {
+app.filter("reverse", function() {
 	return function(messages) {
 		return messages.slice().reverse();
 	}

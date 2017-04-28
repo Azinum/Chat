@@ -3,10 +3,10 @@ h1 {
 }
 
 .main-start-box {
-		margin: 0;
 		width: 100%;
 		max-width: 100%;
 		border: none;
+		margin: 0px;
 	}
 	.main-start-box-title {
 		margin-bottom: 5vw;
@@ -16,22 +16,23 @@ h1 {
 		margin: 6px;
 	}
 	.main-start-box input {
+		margin: 0px 0px 0px 0px;
 		width: 100%;
-		height: 120px;
-		margin-bottom: 5px;
-		border: 5px solid rgb(230, 230, 230);
+		height: 17vw;
 		font-size: 50px;
 	}
 	.main-start-box button {
-		width: 100%;
-		height: 120px;
+		text-align: center;
+		margin: 0px 0px 0px 0px;
+		padding: 0;
+		width: 30vw;
+		height: 12vw;
 		font-size: 6vw;
-		margin-bottom: 80px;
 		border-radius: 5px;
 	}
 	.main-start-box button:active {
 		border: 5px solid rgb(150, 150, 150);
-	}
+}
 
 .chat-view {
 
