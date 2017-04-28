@@ -6,8 +6,7 @@ const user = require("./user");
 
 
 function getTime() {
-	date = new Date();
-	return date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+	return new Date().toISOString().slice(11, 19);
 }
 
 module.exports = {
